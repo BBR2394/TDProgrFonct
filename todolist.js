@@ -2,26 +2,26 @@
 * @Author: Baptiste
 * @Date:   2019-12-17 10:44:49
 * @Last Modified by:   Baptiste
-* @Last Modified time: 2019-12-17 14:02:42
+* @Last Modified time: 2019-12-17 15:03:05
 */
 
-var lst = [];
-
-function createTask(titre, des)
+function createTask(titre, des) 
 {
 	return ({name: titre, description: des});
 }
 
-function addTask(titre, des)
+function addTask(titre, des, lst)
 {
-	lst.push({name: titre, description: des});
-	return lst[lst.length-1]
+	cpLst = [...lst];
+	cpLst.push({name: titre, description: des});
+	return cpLst;
 }
 
-function addTaskFromObj(obj)
+function addTaskFromObj(obj, lst)
 {
-	lst.push(obj)
-	return lst[lst.length-1]
+	cpLst = [...lst];
+	cpLst.push(obj);
+	return cpLst;
 }
 
 function removeTaskFromName(giventitle, theLst)
@@ -32,11 +32,10 @@ function removeTaskFromName(giventitle, theLst)
 
 function printTask(thelst) {
 	let toPrint = ""
-	lst.forEach( function(task, index){
+	thelst.forEach( function(task, index){
 		toPrint += "La tache " + index  + "\n->nom : " + task.name + "\n---> et la description : " + task.description + "\n"
-		// console.log("La tache ", index , "\n->nom : ", task.name, "\n---> et la description : ", task.description)
 	})
-	console.log(toPrint);
+	// console.log(toPrint);
 	return toPrint;
 }
 
@@ -50,6 +49,7 @@ function changeDescription(nameGiven, newDes, theLst) {
 }
 
 module.exports = {
+	createTask,
 	addTask,
 	addTaskFromObj,
 	removeTaskFromName,

@@ -7,6 +7,7 @@ it('every time success test', () => {
 });
 
 describe('Test pour todolist', () => {
+
 	beforeAll(() => {
 		// console.log("*-before all-*");
 		// const titreGen = "toto"
@@ -16,55 +17,88 @@ describe('Test pour todolist', () => {
 		return true;
 	});
 
-	it('test add task with a name and description', () => {
+	it('test createTask, param : name, description, list; return : {name: "a name", description: "a description"}', () => {
 		let titre = "toto";
-		let des = "titi"
-		const res = todolist.addTask(titre, des);
-		
+		let des = "titi";
+ 		let lst = [];
+
+ 		const res = todolist.createTask(titre, des);
+
+		//assertion
 		expect(res).toEqual({name: titre, description: des});
+
 	})
 
-	it('test add task with an object already created', () => {
+	it('test addTask as param a name and description', () => {
+		//arrangement
+		let titre = "toto";
+		let des = "titi";
+ 		let lst = [];
+
+ 		//action
+		const res = todolist.addTask(titre, des, lst);
+
+		//assertion
+		expect(res[res.length-1]).toEqual({name: titre, description: des});
+	})
+
+	it('test addTaskFromObj as param an object already created', () => {
 		obj = {name: "toto", description: "titi"};
-		const res = todolist.addTaskFromObj(obj);
+		let lst = [];
+		const res = todolist.addTaskFromObj(obj, lst);
 
-		expect(res).toEqual(obj);
+		expect(res[res.length-1]).toEqual(obj);
 	})
 
-	it('test remove task in one obj list', () => {
+	it('test removeTaskFromName as param a name and the list', () => {
 		let titre = "toto";
 		let des = "titi";
 		let lst = [];
 		lst.push({name: titre, description: des});
 		
 		const res = todolist.removeTaskFromName("toto", lst);
+		
 		expect(res).toEqual([]);
 	})
 
-	it('test remove task when two obj list', () => {
+	it('test removeTaskFromName as param a name and the list but with two element in the list', () => {
 		let lst = [];
 		lst.push({name: "tutu", description: "tutu"});
 		lst.push({name: "toto", description: "titi"});
 
 		const res = todolist.removeTaskFromName("tutu", lst);
+		
 		expect(res).toEqual([{name: "toto", description: "titi"}]);
 	})
 
-	it('test print task list', () => {
+	it('test printTask list', () => {
 		let lst = [];
 		let resWaited = "La tache 0\n->nom : toto\n---> et la description : titi\n";
 		lst.push({name: "toto", description: "titi"});
+		
 		const res = todolist.printTask(lst);
 
 		expect(res).toEqual(resWaited);
 	})
 
-	it('test change task description', () => {
+	it('test printTask list with two element in the list', () => {
+		let lst = [];
+		let resWaited = "La tache 0\n->nom : toto\n---> et la description : titi\nLa tache 1\n->nom : foo\n---> et la description : bar\n";
+		lst.push({name: "toto", description: "titi"});
+		lst.push({name: "foo", description: "bar"});
+		
+		const res = todolist.printTask(lst);
+
+		expect(res).toEqual(resWaited);
+	})
+
+	it('test changeDescription as param : a name, the new description, and the list', () => {
 		let lst = [];
 		let newDes = "ceci est la nouvelle description";
 		lst.push({name: "toto", description: "titi"});
 		
 		const res = todolist.changeDescription("toto", "ceci est la nouvelle description", lst);
+		
 		expect(res).toEqual([{name: "toto", description: "ceci est la nouvelle description"}]);
 	});
 });
