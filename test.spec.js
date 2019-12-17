@@ -18,12 +18,14 @@ describe('Test pour todolist', () => {
 	});
 
 	it('test createTask, param : name, description, list; return : {name: "a name", description: "a description"}', () => {
-		let task = {name: titre, description: des}
+		let titre = "toto";
+		let des = "titi";
+ 		let lst = [];
 
  		const res = todolist.createTask(titre, des);
 
 		//assertion
-		expect(res).toEqual(task);
+		expect(res).toEqual({name: titre, description: des});
 
 	})
 

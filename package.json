@@ -9,6 +9,7 @@
   "author": "BBR",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^24.9.0"
+    "jest": "^24.9.0",
+    "typescript": "^3.7.3"
   }
 }
