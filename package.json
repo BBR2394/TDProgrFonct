@@ -4,7 +4,8 @@
   "description": "cours deux de programmation fonctionelle ",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "build": "rm -rf dist && tsc --project ./"
   },
   "author": "BBR",
   "license": "ISC",
