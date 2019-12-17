@@ -2,7 +2,7 @@
 * @Author: Baptiste
 * @Date:   2019-12-17 10:44:49
 * @Last Modified by:   Baptiste
-* @Last Modified time: 2019-12-17 15:03:05
+* @Last Modified time: 2019-12-17 15:59:41
 */
 
 function createTask(titre, des) 
@@ -35,7 +35,6 @@ function printTask(thelst) {
 	thelst.forEach( function(task, index){
 		toPrint += "La tache " + index  + "\n->nom : " + task.name + "\n---> et la description : " + task.description + "\n"
 	})
-	// console.log(toPrint);
 	return toPrint;
 }
 

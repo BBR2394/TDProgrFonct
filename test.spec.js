@@ -18,14 +18,12 @@ describe('Test pour todolist', () => {
 	});
 
 	it('test createTask, param : name, description, list; return : {name: "a name", description: "a description"}', () => {
-		let titre = "toto";
-		let des = "titi";
- 		let lst = [];
+		let task = {name: titre, description: des}
 
  		const res = todolist.createTask(titre, des);
 
 		//assertion
-		expect(res).toEqual({name: titre, description: des});
+		expect(res).toEqual(task);
 
 	})
 
@@ -62,9 +60,7 @@ describe('Test pour todolist', () => {
 	})
 
 	it('test removeTaskFromName as param a name and the list but with two element in the list', () => {
-		let lst = [];
-		lst.push({name: "tutu", description: "tutu"});
-		lst.push({name: "toto", description: "titi"});
+		let lst = [{name: "tutu", description: "tutu"}, {name: "toto", description: "titi"}];
 
 		const res = todolist.removeTaskFromName("tutu", lst);
 		
@@ -72,9 +68,8 @@ describe('Test pour todolist', () => {
 	})
 
 	it('test printTask list', () => {
-		let lst = [];
+		let lst = [{name: "toto", description: "titi"}];
 		let resWaited = "La tache 0\n->nom : toto\n---> et la description : titi\n";
-		lst.push({name: "toto", description: "titi"});
 		
 		const res = todolist.printTask(lst);
 
