@@ -1,0 +1,173 @@
+/*
+* @Author: Baptiste
+* @Date:   2020-01-21 08:30:31
+* @Last Modified by:   Baptiste
+* @Last Modified time: 2020-01-21 17:32:09
+*/
+
+// let sizeX = 0
+// let sizeY = 0
+
+function initPlanet(planetX, planetY) {
+	// sizeX = planetX;
+	// sizeY = planetY;
+	return {planetX, planetY}
+}
+
+function createRover(posX, posY, dir) {
+	return {posX, posY, dir}
+}
+
+// function goNorth(rover, planet){
+// 	rover["posX"] += 1;
+// 	rover["posX"] %= planet["planetX"];
+// 	// if (rover["posX"] > sizeX)
+// 	// 	rover["posX"] = 0
+// 	return rover;
+// }
+
+// function goSouth(rover, planet){
+// 	rover["posX"] = (rover["posX"] - 1 + planet["planetX"]) % planet["planetX"];
+// 	// if (rover["posX"] < 0)
+// 	// 	rover["posX"] = planet["planetX"]
+// 	return rover;
+// }
+
+// function goEast(rover, planet){
+// 	rover["posY"] += 1;
+// 	rover["posY"] %= planet["planetY"];
+// 	// if (rover["posY"] > sizeY)
+// 	// 	rover["posY"] = 0
+// 	return rover;
+// }
+
+// function goWest(rover, planet){
+// 	// rover["posY"] -= 1;
+// 	rover["posY"] = (rover["posY"] - 1 + planet["planetY"]) % planet["planetY"];
+
+// 	// if (rover["posY"] < 0)
+// 	// 	rover["posY"] = planet["planetY"]
+// 	return rover;
+// }
+
+function changePos(rover, planet, map) {
+	newPosX = (rover.posX + map["x"][rover.dir] + planet.planetX) % planet.planetX
+	newPosY = (rover.posY + map["y"][rover.dir] + planet.planetY) % planet.planetY
+	return { ... rover, posX: newPosX, posY: newPosY}
+}
+
+function move(rover, planet, command) {
+	const mapMove = {a: { x: { N: 0, S: 0, E: 1, O: -1}, y: { N: 1, S: -1, E:0, O: 0}}, r:{ x: { N: 0, S: 0, E: -1, O: 1}, y: { N: -1, S: 1, E: 0, O: 0}}};
+
+	return changePos(rover, planet, mapMove[command])
+}
+
+// const ptrFunct = [goNorth, goEast, goSouth, goWest]
+const ptscardi = {'N': 0, 'E': 1, 'S': 2, 'O': 3}
+// const ptrFunctCmd = [goToward, goBackward, turnLeft, turnRight]
+const command = {'a': 0, 'r': 1, 'g': 2, 'd': 3}
+
+// function goToward(rover, planet) {
+// 	return ptrFunct[ptscardi[rover["dir"]]](rover, planet)
+// }
+
+// function goBackward(rover, planet) {
+// 	return ptrFunct[(ptscardi[rover["dir"]]+2)%4](rover, planet)
+// }
+
+// function turnLeft(rover, planet, tu) {
+// 	let newDir = tabDir[((ptscardi[rover.dir] + orientation["g"]) + tabDir.length) % 4 ]
+// 	updatedRover = { ... rover, dir: newDir }
+// 	return updatedRover
+// }
+
+// function turnRight(rover, planet) {
+// 	let newDir = tabDir[(ptscardi[rover.dir] + orientation["d"]) % 4 ]
+// 	updatedRover = { ... rover, dir: newDir }
+// 	return updatedRover
+// }
+
+const tabDir = ['N', 'E', 'S', 'O']
+const orientation = {d: 1, g: -1}
+//const ptrFunctTurn = [turnRight, turnLeft]
+/*
+*attention j'utilise a la fois 
+tabDir = ['N', 'E', 'S', 'O']
+* et 
+ptscardi = {'N': 0, 'E': 1, 'S': 2, 'O': 3}
+*/
+function turn(rover, planet, tu) {
+	let indexDir = tabDir.indexOf(rover.dir)
+	let newDir = tabDir[((indexDir + orientation[tu]) + tabDir.length) % 4 ]
+	updatedRover = { ... rover, dir: newDir }
+	return updatedRover
+}
+
+// function turnRight(rover) {
+// 	return turn(rover, "d")
+// }
+
+// function turnLeft(rover) {
+// 	return turn(rover, "g")
+// }
+
+mapFunction = {a: move, r: move, d: turn, g: turn}
+
+function execOneCmd(rover, planet, aCmd) {
+	return mapFunction[aCmd](rover, planet, aCmd)
+	// return ptrFunctCmd[command[aCmd]](rover, planet)
+}
+
+function execCmdRec(rover, planet, tabCmd) {
+	let cmd = tabCmd.shift()
+	console.log(cmd)
+	execOneCmd(rover, planet, cmd)
+	execCmdRec(rover, planet, tabCmd)
+	return {... rover}
+}
+
+function execCmdReduce(rover, planet, tabCmd) {
+	tabCmd.reduce( function(res, current) {
+		res = mapFunction[current](rover, planet, current)
+	})
+
+}
+
+function execCmd(rover, planet, tabCmd) {
+	
+	upRover = { ... rover}
+	tabCmd.filter(function (elem) {
+		upRover = execOneCmd(upRover, planet, elem)
+	})
+
+	return upRover
+
+	// oneCmd = tabCmd.shift()
+	// execOneCmd(rover, planet, oneCmd)
+}
+
+// function execCmd(rover, planet, tabCmd) {
+// 	tabCmd.filter(function (aCmd) {
+// 		console.log(aCmd)
+// 	})
+// 	return rover
+// }
+
+module.exports = {
+	initPlanet: initPlanet,
+	createRover: createRover,
+    // goNorth: goNorth,
+    // goSouth: goSouth,
+    // goEast: goEast,
+    // goWest: goWest,
+    // goToward: goToward,
+    // goBackward: goBackward,
+    turn: turn,
+    // turnLeft: turnLeft,
+    // turnRight: turnRight,
+    execOneCmd: execOneCmd,
+    execCmd: execCmd,
+    move: move,
+    // execCmdRec: execCmdRec,
+    execCmdReduce: execCmdReduce
+};

@@ -2,13 +2,8 @@
 * @Author: Baptiste
 * @Date:   2019-12-17 10:44:49
 * @Last Modified by:   Baptiste
-* @Last Modified time: 2019-12-17 16:56:50
+* @Last Modified time: 2019-12-17 15:59:41
 */
-
-/*
-pour compiler : npx tsc todolist.ts --lib es2015
-*/
-
 var __spreadArrays = (this && this.__spreadArrays) || function () {
     for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
     for (var r = Array(s), k = 0, i = 0; i < il; i++)
