@@ -2,7 +2,7 @@
 * @Author: Baptiste
 * @Date:   2020-01-21 08:29:26
 * @Last Modified by:   Baptiste
-* @Last Modified time: 2020-01-27 18:08:42
+* @Last Modified time: 2020-01-27 14:09:52
 */
 
 const MarsRover = require('./marsRover.js')
@@ -557,7 +557,6 @@ describe('Test pour le mars rover', () => {
  		expect(res).toEqual({posX: 23, posY: 27, dir: 'E'});
 	})
 
-
 	// it('test exec Recursive commande [a, a, g, a, a, d ] N set', () => {
 	// 	let coordX = 25;
 	// 	let coordY = 25;
@@ -786,57 +785,6 @@ describe('Test pour le mars rover', () => {
  		const res = MarsRover.execCmd(roverData, planet, cmdTab);
 
  		expect(res).toEqual({posX: coordX-2, posY: coordY+2, dir: 'N'});
-	})
-
-	it('test exec  commande [d] N set', () => {
-		let coordX = 25;
-		let coordY = 25;
-		let dir = 'N';
-		let sizeXplt = 50;
-		let sizeYplt = 50;
-
-		const cmdTab = ['d']
-
- 		let roverData = MarsRover.createRover(coordX, coordY, dir);
- 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
-
- 		const res = MarsRover.execCmdReduce(roverData, planet, cmdTab);
-
- 		expect(res).toEqual({posX: 25, posY: 25, dir: 'E'});
-	})
-
-	it('test exec  commande [d, d ] N set', () => {
-		let coordX = 25;
-		let coordY = 25;
-		let dir = 'N';
-		let sizeXplt = 50;
-		let sizeYplt = 50;
-
-		const cmdTab = ['d', 'd']
-
- 		let roverData = MarsRover.createRover(coordX, coordY, dir);
- 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
-
- 		const res = MarsRover.execCmdReduce(roverData, planet, cmdTab);
-
- 		expect(res).toEqual({posX: 25, posY: 25, dir: 'S'});
-	})
-
-	it('test exec  commande [d, d, d] N set', () => {
-		let coordX = 25;
-		let coordY = 25;
-		let dir = 'N';
-		let sizeXplt = 50;
-		let sizeYplt = 50;
-
-		const cmdTab = ['d', 'd', 'd']
-
- 		let roverData = MarsRover.createRover(coordX, coordY, dir);
- 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
-
- 		const res = MarsRover.execCmdReduce(roverData, planet, cmdTab);
-
- 		expect(res).toEqual({posX: 25, posY: 25, dir: 'O'});
 	})
 
 });

@@ -2,7 +2,7 @@
 * @Author: Baptiste
 * @Date:   2020-01-21 08:30:31
 * @Last Modified by:   Baptiste
-* @Last Modified time: 2020-01-27 14:08:07
+* @Last Modified time: 2020-01-27 17:56:31
 */
 
 
@@ -15,8 +15,8 @@ function createRover(posX, posY, dir) {
 }
 
 function changePos(rover, planet, map) {
-	newPosX = (rover.posX + map["x"][rover.dir] + planet.planetX) % planet.planetX
-	newPosY = (rover.posY + map["y"][rover.dir] + planet.planetY) % planet.planetY
+	let newPosX = (rover.posX + map["x"][rover.dir] + planet.planetX) % planet.planetX
+	let newPosY = (rover.posY + map["y"][rover.dir] + planet.planetY) % planet.planetY
 	return { ... rover, posX: newPosX, posY: newPosY}
 }
 
@@ -63,12 +63,12 @@ ptscardi = {'N': 0, 'E': 1, 'S': 2, 'O': 3}
 function turn(rover, planet, tu) {
 	let indexDir = tabDir.indexOf(rover.dir)
 	let newDir = tabDir[((indexDir + orientation[tu]) + tabDir.length) % 4 ]
-	updatedRover = { ... rover, dir: newDir }
+	let updatedRover = { ... rover, dir: newDir }
 	return updatedRover
 }
 
 //sorte de tableau de pointeur sur fonction
-mapFunctionA = {a: move, r: move, d: turn, g: turn}
+const mapFunctionA = {a: move, r: move, d: turn, g: turn}
 
 function execOneCmd(rover, planet, aCmd) {
 	return mapFunctionA[aCmd](rover, planet, aCmd)
@@ -96,7 +96,7 @@ function execCmdReduce(rover, planet, tabCmd) {
 }
 
 function execCmd(rover, planet, tabCmd) {
-	upRover = { ... rover}
+	let upRover = { ... rover}
 	tabCmd.filter(function (elem) {
 		upRover = execOneCmd(upRover, planet, elem)
 	})
@@ -107,14 +107,18 @@ function execCmd(rover, planet, tabCmd) {
 	// execOneCmd(rover, planet, oneCmd)
 }
 
+// module.exports = {
+// 	initPlanet: initPlanet,
+// 	createRover: createRover,
+// 	turn: turn,
+// 	execOneCmd: execOneCmd,
+// 	execCmd: execCmd,
+// 	move: move,
+//     // execCmdRec: execCmdRec,
+//     execCmdReduce: execCmdReduce
+// };
 
-module.exports = {
-	initPlanet: initPlanet,
-	createRover: createRover,
-    turn: turn,
-    execOneCmd: execOneCmd,
-    execCmd: execCmd,
-    move: move,
-    // execCmdRec: execCmdRec,
-    execCmdReduce: execCmdReduce
-};
+export { initPlanet };
+export { createRover };
+export { move };
+export { turn };
