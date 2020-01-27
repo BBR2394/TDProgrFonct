@@ -2,7 +2,7 @@
 * @Author: Baptiste
 * @Date:   2020-01-21 08:30:31
 * @Last Modified by:   Baptiste
-* @Last Modified time: 2020-01-27 14:08:07
+* @Last Modified time: 2020-01-27 23:08:57
 */
 
 
@@ -12,6 +12,11 @@ function initPlanet(planetX, planetY) {
 
 function createRover(posX, posY, dir) {
 	return {posX, posY, dir}
+}
+
+function addObstacle(obTab, posX, posY) {
+	obTab[obTab.length] = {x: posX, y: posY}
+	return obTab
 }
 
 function changePos(rover, planet, map) {
@@ -107,6 +112,11 @@ function execCmd(rover, planet, tabCmd) {
 	// execOneCmd(rover, planet, oneCmd)
 }
 
+function isObstacle(planet, rover, tabObstcl) {
+	
+	return false;
+}
+
 
 module.exports = {
 	initPlanet: initPlanet,
@@ -116,5 +126,6 @@ module.exports = {
     execCmd: execCmd,
     move: move,
     // execCmdRec: execCmdRec,
-    execCmdReduce: execCmdReduce
+    execCmdReduce: execCmdReduce,
+    addObstacle: addObstacle
 };

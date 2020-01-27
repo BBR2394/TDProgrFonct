@@ -2,7 +2,7 @@
 * @Author: Baptiste
 * @Date:   2020-01-21 08:29:26
 * @Last Modified by:   Baptiste
-* @Last Modified time: 2020-01-27 18:08:42
+* @Last Modified time: 2020-01-27 23:00:37
 */
 
 const MarsRover = require('./marsRover.js')
@@ -837,6 +837,17 @@ describe('Test pour le mars rover', () => {
  		const res = MarsRover.execCmdReduce(roverData, planet, cmdTab);
 
  		expect(res).toEqual({posX: 25, posY: 25, dir: 'O'});
+	})
+
+	it('test création obstacles ', () => {
+		let posObX = 25;
+		let posObY = 26;
+		let currentOb = []
+
+		const res = MarsRover.addObstacle(currentOb, posObX, posObY);
+
+ 		expect(res).toEqual([{x: 25, y: 26}]);
+
 	})
 
 });
