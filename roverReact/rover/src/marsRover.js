@@ -2,7 +2,7 @@
 * @Author: Baptiste
 * @Date:   2020-01-21 08:30:31
 * @Last Modified by:   Baptiste
-* @Last Modified time: 2020-01-27 17:56:31
+* @Last Modified time: 2020-01-27 22:41:08
 */
 
 
@@ -18,6 +18,13 @@ function changePos(rover, planet, map) {
 	let newPosX = (rover.posX + map["x"][rover.dir] + planet.planetX) % planet.planetX
 	let newPosY = (rover.posY + map["y"][rover.dir] + planet.planetY) % planet.planetY
 	return { ... rover, posX: newPosX, posY: newPosY}
+}
+
+//this one is just for developpement because move to one to one is very slow
+function moveDix(rover, planet, command) {
+	const mapMove = {a: { x: { N: 0, S: 0, E: 10, O: -10}, y: { N: 10, S: -10, E:0, O: 0}}, r:{ x: { N: 0, S: 0, E: -10, O: 10}, y: { N: -10, S: 10, E: 0, O: 0}}};
+
+	return changePos(rover, planet, mapMove[command])
 }
 
 function move(rover, planet, command) {
@@ -61,6 +68,7 @@ tabDir = ['N', 'E', 'S', 'O']
 ptscardi = {'N': 0, 'E': 1, 'S': 2, 'O': 3}
 */
 function turn(rover, planet, tu) {
+	console.log("dans turn", rover.dir, " et tu ", tu)
 	let indexDir = tabDir.indexOf(rover.dir)
 	let newDir = tabDir[((indexDir + orientation[tu]) + tabDir.length) % 4 ]
 	let updatedRover = { ... rover, dir: newDir }
@@ -122,3 +130,4 @@ export { initPlanet };
 export { createRover };
 export { move };
 export { turn };
+export { moveDix };
