@@ -2,53 +2,17 @@
 * @Author: Baptiste
 * @Date:   2020-01-21 08:30:31
 * @Last Modified by:   Baptiste
-* @Last Modified time: 2020-01-21 17:32:09
+* @Last Modified time: 2020-01-27 11:59:34
 */
 
-// let sizeX = 0
-// let sizeY = 0
 
 function initPlanet(planetX, planetY) {
-	// sizeX = planetX;
-	// sizeY = planetY;
 	return {planetX, planetY}
 }
 
 function createRover(posX, posY, dir) {
 	return {posX, posY, dir}
 }
-
-// function goNorth(rover, planet){
-// 	rover["posX"] += 1;
-// 	rover["posX"] %= planet["planetX"];
-// 	// if (rover["posX"] > sizeX)
-// 	// 	rover["posX"] = 0
-// 	return rover;
-// }
-
-// function goSouth(rover, planet){
-// 	rover["posX"] = (rover["posX"] - 1 + planet["planetX"]) % planet["planetX"];
-// 	// if (rover["posX"] < 0)
-// 	// 	rover["posX"] = planet["planetX"]
-// 	return rover;
-// }
-
-// function goEast(rover, planet){
-// 	rover["posY"] += 1;
-// 	rover["posY"] %= planet["planetY"];
-// 	// if (rover["posY"] > sizeY)
-// 	// 	rover["posY"] = 0
-// 	return rover;
-// }
-
-// function goWest(rover, planet){
-// 	// rover["posY"] -= 1;
-// 	rover["posY"] = (rover["posY"] - 1 + planet["planetY"]) % planet["planetY"];
-
-// 	// if (rover["posY"] < 0)
-// 	// 	rover["posY"] = planet["planetY"]
-// 	return rover;
-// }
 
 function changePos(rover, planet, map) {
 	newPosX = (rover.posX + map["x"][rover.dir] + planet.planetX) % planet.planetX
@@ -103,18 +67,11 @@ function turn(rover, planet, tu) {
 	return updatedRover
 }
 
-// function turnRight(rover) {
-// 	return turn(rover, "d")
-// }
-
-// function turnLeft(rover) {
-// 	return turn(rover, "g")
-// }
-
-mapFunction = {a: move, r: move, d: turn, g: turn}
+//sorte de tableau de pointeur sur fonction
+mapFunctionA = {a: move, r: move, d: turn, g: turn}
 
 function execOneCmd(rover, planet, aCmd) {
-	return mapFunction[aCmd](rover, planet, aCmd)
+	return mapFunctionA[aCmd](rover, planet, aCmd)
 	// return ptrFunctCmd[command[aCmd]](rover, planet)
 }
 
@@ -127,14 +84,18 @@ function execCmdRec(rover, planet, tabCmd) {
 }
 
 function execCmdReduce(rover, planet, tabCmd) {
-	tabCmd.reduce( function(res, current) {
-		res = mapFunction[current](rover, planet, current)
-	})
+	console.log("les commandes: ", tabCmd)
+	tabCmd.reduce( function(accumulateur, currentVal, index, array) {
+		// console.log("acc :", accumulateur, " currentval : ", currentVal, " index : ", index, " array : ", array)
+		rover = execOneCmd(rover, planet, array[index])
+
+		//res = mapFunction[current](rover, planet, current)
+	}, 0)
+	return {... rover}
 
 }
 
 function execCmd(rover, planet, tabCmd) {
-	
 	upRover = { ... rover}
 	tabCmd.filter(function (elem) {
 		upRover = execOneCmd(upRover, planet, elem)
@@ -146,25 +107,11 @@ function execCmd(rover, planet, tabCmd) {
 	// execOneCmd(rover, planet, oneCmd)
 }
 
-// function execCmd(rover, planet, tabCmd) {
-// 	tabCmd.filter(function (aCmd) {
-// 		console.log(aCmd)
-// 	})
-// 	return rover
-// }
 
 module.exports = {
 	initPlanet: initPlanet,
 	createRover: createRover,
-    // goNorth: goNorth,
-    // goSouth: goSouth,
-    // goEast: goEast,
-    // goWest: goWest,
-    // goToward: goToward,
-    // goBackward: goBackward,
     turn: turn,
-    // turnLeft: turnLeft,
-    // turnRight: turnRight,
     execOneCmd: execOneCmd,
     execCmd: execCmd,
     move: move,
