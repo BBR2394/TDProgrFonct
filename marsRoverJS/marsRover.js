@@ -2,7 +2,7 @@
 * @Author: Baptiste
 * @Date:   2020-01-21 08:30:31
 * @Last Modified by:   Baptiste
-* @Last Modified time: 2020-01-27 23:08:57
+* @Last Modified time: 2020-01-28 08:50:16
 */
 
 
@@ -90,10 +90,11 @@ function execCmdRec(rover, planet, tabCmd) {
 
 function execCmdReduce(rover, planet, tabCmd) {
 	console.log("les commandes: ", tabCmd)
-	tabCmd.reduce( function(accumulateur, currentVal, index, array) {
-		console.log("acc :", accumulateur, " currentval : ", currentVal, " index : ", index, " array : ", array)
-		rover = execOneCmd(rover, planet, array[index])
-
+	tabCmd.reduce( function(accumulateur, currentVal) {
+		console.log("acc :", accumulateur, " currentval : ", currentVal)
+		// rover = execOneCmd(rover, planet, array[index])
+		rover = execOneCmd(rover, planet, currentVal)
+		return currentVal
 		//res = mapFunction[current](rover, planet, current)
 	}, 0)
 	return {... rover}
@@ -113,7 +114,7 @@ function execCmd(rover, planet, tabCmd) {
 }
 
 function isObstacle(planet, rover, tabObstcl) {
-	
+
 	return false;
 }
 
