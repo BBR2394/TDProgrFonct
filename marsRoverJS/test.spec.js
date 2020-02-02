@@ -2,7 +2,7 @@
 * @Author: Baptiste
 * @Date:   2020-01-21 08:29:26
 * @Last Modified by:   Baptiste
-* @Last Modified time: 2020-01-27 23:00:37
+* @Last Modified time: 2020-02-02 22:16:19
 */
 
 const MarsRover = require('./marsRover.js')
@@ -43,213 +43,6 @@ describe('Test pour le mars rover', () => {
 		let rover = MarsRover.createRover(coordX, coordY, dir);
 		expect(rover).toEqual({posX: 25, posY: 25,dir: 'N'});
 	})
-
-	// it('test go to north mars rover', () => {
-	// 	let coordX = 25;
-	// 	let coordY = 25;
-	// 	let dir = 'N';
-	// 	let sizeXplt = 50;
-	// 	let sizeYplt = 50;
-
- // 		let roverData = MarsRover.createRover(coordX, coordY, dir);
- // 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
-
- // 		const res = MarsRover.goNorth(roverData, planet);
-
-	// 	//assertion
-	// 	expect(res).toEqual({posX: 26, posY: 25,dir: 'N'});
-
-	// })
-
-	// it('test go to south mars rover', () => {
-	// 	let coordX = 25;
-	// 	let coordY = 25;
-	// 	let dir = 'S';
-	// 	let sizeXplt = 50;
-	// 	let sizeYplt = 50;
-
- // 		let roverData = MarsRover.createRover(coordX, coordY, dir);
- // 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
-
-
- // 		const res = MarsRover.goSouth(roverData, planet);
-
-	// 	//assertion
-	// 	expect(res).toEqual({posX: 24, posY: 25,dir: 'S'});
-
-	// })
-
-	// it('test go to east mars rover', () => {
-	// 	let coordX = 25;
-	// 	let coordY = 25;
-	// 	let dir = 'E';
-	// 	let sizeXplt = 50;
-	// 	let sizeYplt = 50;
-
- // 		let roverData = MarsRover.createRover(coordX, coordY, dir);
- // 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
-
- // 		const res = MarsRover.goEast(roverData, planet);
-
-	// 	//assertion
-	// 	expect(res).toEqual({posX: 25, posY: 26,dir: 'E'});
-
-	// })
-
-	// it('test go to west mars rover', () => {
-	// 	let coordX = 25;
-	// 	let coordY = 25;
-	// 	let dir = 'O';
-	// 	let sizeXplt = 50;
-	// 	let sizeYplt = 50;
-
- // 		let roverData = MarsRover.createRover(coordX, coordY, dir);
- // 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
-
-
- // 		const res = MarsRover.goWest(roverData, planet);
-
-	// 	//assertion
-	// 	expect(res).toEqual({posX: 25, posY: 24,dir: 'O'});
-
-	// })
-
-	// it('test go toward only with north set', () => {
-	// 	let coordX = 25;
-	// 	let coordY = 25;
-	// 	let dir = 'N';
-	// 	let sizeXplt = 50;
-	// 	let sizeYplt = 50;
-
- // 		let roverData = MarsRover.createRover(coordX, coordY, dir);
- // 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
-
- // 		const res = MarsRover.goToward(roverData, planet);
-
-	// 	//assertion
-	// 	expect(res).toEqual({posX: 26, posY: 25,dir: 'N'});
-
-	// })
-
-	// it('test go toward only with South set', () => {
-	// 	let coordX = 25;
-	// 	let coordY = 25;
-	// 	let dir = 'S';
-	// 	let sizeXplt = 50;
-	// 	let sizeYplt = 50;
-
- // 		let roverData = MarsRover.createRover(coordX, coordY, dir);
- // 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
-
- // 		const res = MarsRover.goToward(roverData, planet);
-
-	// 	//assertion
-	// 	expect(res).toEqual({posX: 24, posY: 25,dir: 'S'});
-
-	// })
-
-	// it('test go toward only with East set', () => {
-	// 	let coordX = 25;
-	// 	let coordY = 25;
-	// 	let dir = 'E';
-	// 	let sizeXplt = 50;
-	// 	let sizeYplt = 50;
-
- // 		let roverData = MarsRover.createRover(coordX, coordY, dir);
- // 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
-
- // 		const res = MarsRover.goToward(roverData, planet);
-
-	// 	//assertion
-	// 	expect(res).toEqual({posX: 25, posY: 26, dir: 'E'});
-
-	// })
-
-	// it('test go toward only with West set', () => {
-	// 	let coordX = 25;
-	// 	let coordY = 25;
-	// 	let dir = 'O';
-	// 	let sizeXplt = 50;
-	// 	let sizeYplt = 50;
-
- // 		let roverData = MarsRover.createRover(coordX, coordY, dir);
- // 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
-
- // 		const res = MarsRover.goToward(roverData, planet);
-
-	// 	//assertion
-	// 	expect(res).toEqual({posX: 25, posY: 24, dir: 'O'});
-
-	// })
-
-	// it('test go backward only with North set', () => {
-	// 	let coordX = 25;
-	// 	let coordY = 25;
-	// 	let dir = 'N';
-	// 	let sizeXplt = 50;
-	// 	let sizeYplt = 50;
-
- // 		let roverData = MarsRover.createRover(coordX, coordY, dir);
- // 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
-
- // 		const res = MarsRover.goBackward(roverData, planet);
-
-	// 	//assertion
-	// 	expect(res).toEqual({posX: 24, posY: 25,dir: 'N'});
-
-	// })
-
-	// it('test go backward only with South set', () => {
-	// 	let coordX = 25;
-	// 	let coordY = 25;
-	// 	let dir = 'S';
-	// 	let sizeXplt = 50;
-	// 	let sizeYplt = 50;
-
- // 		let roverData = MarsRover.createRover(coordX, coordY, dir);
- // 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
-
- // 		const res = MarsRover.goBackward(roverData, planet);
-
-	// 	//assertion
-	// 	expect(res).toEqual({posX: 26, posY: 25,dir: 'S'});
-
-	// })
-
-	// 	it('test go backward only with East set', () => {
-	// 	let coordX = 25;
-	// 	let coordY = 25;
-	// 	let dir = 'E';
-	// 	let sizeXplt = 50;
-	// 	let sizeYplt = 50;
-
- // 		let roverData = MarsRover.createRover(coordX, coordY, dir);
- // 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
-
- // 		const res = MarsRover.goBackward(roverData, planet);
-
-	// 	//assertion
-	// 	expect(res).toEqual({posX: 25, posY: 24, dir: 'E'});
-
-	// })
-
-	// it('test go backward only with West set', () => {
-	// 	let coordX = 25;
-	// 	let coordY = 25;
-	// 	let dir = 'O';
-	// 	let sizeXplt = 50;
-	// 	let sizeYplt = 50;
-
- // 		let roverData = MarsRover.createRover(coordX, coordY, dir);
- // 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
-
- // 		const res = MarsRover.goBackward(roverData, planet);
-
-	// 	//assertion
-	// 	expect(res).toEqual({posX: 25, posY: 26, dir: 'O'});
-
-	// })
-
 
 	it('test turn rigth Only  N -> E', () => {
 		let coordX = 25;
@@ -382,7 +175,7 @@ describe('Test pour le mars rover', () => {
 
  		const res = MarsRover.execOneCmd(roverData, planet, 'a');
 
- 		expect(res).toEqual({posX: 25, posY: 26, dir: 'N'});
+ 		expect(res).toEqual({posX: 25, posY: 24, dir: 'N'});
 	})
 
 	it('test exec one commande [r] north N set', () => {
@@ -397,7 +190,7 @@ describe('Test pour le mars rover', () => {
 
  		const res = MarsRover.execOneCmd(roverData, planet, 'r');
 
- 		expect(res).toEqual({posX: 25, posY: 24, dir: 'N'});
+ 		expect(res).toEqual({posX: 25, posY: 26, dir: 'N'});
 	})
 
 	it('test exec one commande [g] north set', () => {
@@ -430,7 +223,7 @@ describe('Test pour le mars rover', () => {
  		expect(res).toEqual({posX: 25, posY: 25, dir: 'E'});
 	})
 
-	it('Test New move dir : N 25->26 cmd : a', () => {
+	it('Test New move dir : N 25->24 cmd : a', () => {
 		let coordX = 25;
 		let coordY = 25;
 		let dir = 'N';
@@ -442,26 +235,10 @@ describe('Test pour le mars rover', () => {
 
  		const res = MarsRover.move(roverData, planet, 'a');
 
- 		expect(res).toEqual({posX: 25, posY: 26, dir: 'N'});
+ 		expect(res).toEqual({posX: 25, posY: 24, dir: 'N'});
 	})
 
-	it('Test New move dir : N 49->0cmd : a', () => {
-		let coordX = 25;
-		let coordY = 49;
-		let dir = 'N';
-		let sizeXplt = 50;
-		let sizeYplt = 50;
-
- 		let roverData = MarsRover.createRover(coordX, coordY, dir);
- 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
-
- 		const res = MarsRover.move(roverData, planet, 'a');
-
- 		expect(res).toEqual({posX: 25, posY: 0, dir: 'N'});
-	})
-
-
-	it('Test New move dir : N 0->49 cmd : r', () => {
+	it('Test New move dir : N 0->49cmd : a', () => {
 		let coordX = 25;
 		let coordY = 0;
 		let dir = 'N';
@@ -471,9 +248,25 @@ describe('Test pour le mars rover', () => {
  		let roverData = MarsRover.createRover(coordX, coordY, dir);
  		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
 
- 		const res = MarsRover.move(roverData, planet, 'r');
+ 		const res = MarsRover.move(roverData, planet, 'a');
 
  		expect(res).toEqual({posX: 25, posY: 49, dir: 'N'});
+	})
+
+
+	it('Test New move dir : N 49->0 cmd : r', () => {
+		let coordX = 25;
+		let coordY = 49;
+		let dir = 'N';
+		let sizeXplt = 50;
+		let sizeYplt = 50;
+
+ 		let roverData = MarsRover.createRover(coordX, coordY, dir);
+ 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
+
+ 		const res = MarsRover.move(roverData, planet, 'r');
+
+ 		expect(res).toEqual({posX: 25, posY: 0, dir: 'N'});
 	})
 
 
@@ -535,9 +328,9 @@ describe('Test pour le mars rover', () => {
  		let roverData = MarsRover.createRover(coordX, coordY, dir);
  		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
 
- 		const res = MarsRover.execCmd(roverData, planet, cmdTab);
+ 		const res = MarsRover.execCmd(roverData, planet, cmdTab, [{x:25, y:34}]);
 
- 		expect(res).toEqual({posX: 23, posY: 27, dir: 'N'});
+ 		expect(res).toEqual({posX: 23, posY: 23, dir: 'N'});
 	})
 
 	it('test exec  commande [a, a, g, a, a, d, d ] N set', () => {
@@ -552,9 +345,9 @@ describe('Test pour le mars rover', () => {
  		let roverData = MarsRover.createRover(coordX, coordY, dir);
  		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
 
- 		const res = MarsRover.execCmdReduce(roverData, planet, cmdTab);
+ 		const res = MarsRover.execCmdReduce(roverData, planet, cmdTab, [{x:25, y:34}]);
 
- 		expect(res).toEqual({posX: 23, posY: 27, dir: 'E'});
+ 		expect(res).toEqual({posX: 23, posY: 23, dir: 'E'});
 	})
 
 
@@ -575,7 +368,7 @@ describe('Test pour le mars rover', () => {
  // 		expect(res).toEqual({posX: 23, posY: 27, dir: 'N'});
 	// })
 
-	it('RANDOM Pos Size test turn rigth Only  N -> E', () => {
+	/*it('RANDOM Pos Size test turn rigth Only  N -> E', () => {
 		let sizeXplt = 150;
 		let sizeYplt = 125;
 		let coordX = Math.random() * 150;
@@ -770,23 +563,23 @@ describe('Test pour le mars rover', () => {
 
  		expect(res).toEqual({posX: coordX, posY: coordY+1, dir: 'N'});
 	})
+*/
+	// it('RANDOM Pos Size test exec  commande [a, a, g, a, a, d ] N set', () => {
+	// 	let sizeXplt = 150;
+	// 	let sizeYplt = 125;
+	// 	let coordX = parseInt(Math.random() * 150);
+	// 	let coordY = parseInt(Math.random() * 125);
+	// 	let dir = 'N';
 
-	it('RANDOM Pos Size test exec  commande [a, a, g, a, a, d ] N set', () => {
-		let sizeXplt = 150;
-		let sizeYplt = 125;
-		let coordX = parseInt(Math.random() * 150);
-		let coordY = parseInt(Math.random() * 125);
-		let dir = 'N';
+	// 	const cmdTab = ['a', 'a', 'g', 'a', 'a', 'd']
 
-		const cmdTab = ['a', 'a', 'g', 'a', 'a', 'd']
+ // 		let roverData = MarsRover.createRover(coordX, coordY, dir);
+ // 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
 
- 		let roverData = MarsRover.createRover(coordX, coordY, dir);
- 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
+ // 		const res = MarsRover.execCmd(roverData, planet, cmdTab);
 
- 		const res = MarsRover.execCmd(roverData, planet, cmdTab);
-
- 		expect(res).toEqual({posX: coordX-2, posY: coordY+2, dir: 'N'});
-	})
+ // 		expect(res).toEqual({posX: coordX-2, posY: coordY+2, dir: 'N'});
+	// })
 
 	it('test exec  commande [d] N set', () => {
 		let coordX = 25;
@@ -800,7 +593,7 @@ describe('Test pour le mars rover', () => {
  		let roverData = MarsRover.createRover(coordX, coordY, dir);
  		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
 
- 		const res = MarsRover.execCmdReduce(roverData, planet, cmdTab);
+ 		const res = MarsRover.execCmdReduce(roverData, planet, cmdTab, [{x: 25, y: 26}]);
 
  		expect(res).toEqual({posX: 25, posY: 25, dir: 'E'});
 	})
@@ -817,7 +610,7 @@ describe('Test pour le mars rover', () => {
  		let roverData = MarsRover.createRover(coordX, coordY, dir);
  		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
 
- 		const res = MarsRover.execCmdReduce(roverData, planet, cmdTab);
+ 		const res = MarsRover.execCmdReduce(roverData, planet, cmdTab, [{x: 25, y: 26}]);
 
  		expect(res).toEqual({posX: 25, posY: 25, dir: 'S'});
 	})
@@ -834,14 +627,14 @@ describe('Test pour le mars rover', () => {
  		let roverData = MarsRover.createRover(coordX, coordY, dir);
  		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
 
- 		const res = MarsRover.execCmdReduce(roverData, planet, cmdTab);
+ 		const res = MarsRover.execCmdReduce(roverData, planet, cmdTab, [{x: 25, y: 26}]);
 
  		expect(res).toEqual({posX: 25, posY: 25, dir: 'O'});
 	})
 
 	it('test création obstacles ', () => {
-		let posObX = 25;
-		let posObY = 26;
+		const posObX = 25;
+		const posObY = 26;
 		let currentOb = []
 
 		const res = MarsRover.addObstacle(currentOb, posObX, posObY);
@@ -850,4 +643,82 @@ describe('Test pour le mars rover', () => {
 
 	})
 
+	it('test création plusieurs obstacles ', () => {
+		const posObX = 25;
+		const posObY = 26;
+		let currentOb = []
+
+		currentOb = MarsRover.addObstacle(currentOb, posObX, posObY);
+		currentOb = MarsRover.addObstacle(currentOb, 110, 100);
+		const res = MarsRover.addObstacle(currentOb, 50, 333);
+
+ 		expect(res).toEqual([{x: 25, y: 26},{x: 110, y: 100},{x: 50, y: 333}]);
+
+	})
+
+	it('si il y a une collision', () => {
+		const coordXr = 22;
+		const coordYr = 22;
+		const dirr = 'N';
+		const sizeXplt = 500;
+		const sizeYplt = 500;
+
+		const posObX = 35;
+		const posObY = 41;
+		let currentObBis = []
+
+		const roverData = MarsRover.createRover(coordXr, coordYr, dirr);
+ 		const planetData = MarsRover.initPlanet(sizeXplt, sizeYplt)
+
+		currentObBis = MarsRover.addObstacle(currentObBis, posObX, posObY);
+
+		const res = MarsRover.getCollide({posX: 35, posY:42, dir:'N'}, planetData, currentObBis, 'a')
+
+ 		expect(res).toEqual(true);
+
+	})
+
+	// it('si il y a une collision', () => {
+	// 	let coordX = 25;
+	// 	let coordY = 26;
+	// 	let dir = 'N';
+	// 	let sizeXplt = 50;
+	// 	let sizeYplt = 50;
+
+	// 	let posObX = 25;
+	// 	let posObY = 24;
+	// 	let currentOb = []
+
+	// 	let roverData = MarsRover.createRover(coordX, coordY, dir);
+ // 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
+	// 	currentOb = MarsRover.addObstacle(currentOb, posObX, posObY);
+
+	// 	const res = MarsRover.getCollide(planet, roverData, currentOb, 'a')
+
+ // 		expect(res).toEqual(false);
+
+	// })
+
+	// it('si il y a une collision', () => {
+	// 	let coordX = 110;
+	// 	let coordY = 101;
+	// 	let dir = 'N';
+	// 	let sizeXplt = 500;
+	// 	let sizeYplt = 500;
+
+	// 	let posObX = 110;
+	// 	let posObY = 100;
+	// 	let currentOb = []
+
+	// 	let roverData = MarsRover.createRover(coordX, coordY, dir);
+ // 		let planet = MarsRover.initPlanet(sizeXplt, sizeYplt)
+	// 	currentOb = MarsRover.addObstacle(currentOb, posObX, posObY);
+	// 	currentOb = MarsRover.addObstacle(currentOb, 45, 99);
+	// 	currentOb = MarsRover.addObstacle(currentOb, 110, 100);
+
+	// 	const res = MarsRover.getCollide(planet, roverData, currentOb, 'a')
+
+ // 		expect(res).toEqual(true);
+
+	// })
 });

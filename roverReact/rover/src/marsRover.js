@@ -2,7 +2,7 @@
 * @Author: Baptiste
 * @Date:   2020-01-21 08:30:31
 * @Last Modified by:   Baptiste
-* @Last Modified time: 2020-01-27 22:41:08
+* @Last Modified time: 2020-02-02 22:15:05
 */
 
 
@@ -22,41 +22,19 @@ function changePos(rover, planet, map) {
 
 //this one is just for developpement because move to one to one is very slow
 function moveDix(rover, planet, command) {
-	const mapMove = {a: { x: { N: 0, S: 0, E: 10, O: -10}, y: { N: 10, S: -10, E:0, O: 0}}, r:{ x: { N: 0, S: 0, E: -10, O: 10}, y: { N: -10, S: 10, E: 0, O: 0}}};
+	const mapMove = {a: { x: { N: 0, S: 0, E: 10, O: -10}, y: { N: -10, S: 10, E:0, O: 0}}, r:{ x: { N: 0, S: 0, E: -10, O: 10}, y: { N: 10, S: -10, E: 0, O: 0}}};
 
 	return changePos(rover, planet, mapMove[command])
 }
 
 function move(rover, planet, command) {
-	const mapMove = {a: { x: { N: 0, S: 0, E: 1, O: -1}, y: { N: 1, S: -1, E:0, O: 0}}, r:{ x: { N: 0, S: 0, E: -1, O: 1}, y: { N: -1, S: 1, E: 0, O: 0}}};
+	const mapMove = {a: { x: { N: 0, S: 0, E: 1, O: -1}, y: { N: -1, S: 1, E:0, O: 0}}, r:{ x: { N: 0, S: 0, E: -1, O: 1}, y: { N: 1, S: -1, E: 0, O: 0}}};
 
 	return changePos(rover, planet, mapMove[command])
 }
 
-// const ptrFunct = [goNorth, goEast, goSouth, goWest]
 const ptscardi = {'N': 0, 'E': 1, 'S': 2, 'O': 3}
-// const ptrFunctCmd = [goToward, goBackward, turnLeft, turnRight]
 const command = {'a': 0, 'r': 1, 'g': 2, 'd': 3}
-
-// function goToward(rover, planet) {
-// 	return ptrFunct[ptscardi[rover["dir"]]](rover, planet)
-// }
-
-// function goBackward(rover, planet) {
-// 	return ptrFunct[(ptscardi[rover["dir"]]+2)%4](rover, planet)
-// }
-
-// function turnLeft(rover, planet, tu) {
-// 	let newDir = tabDir[((ptscardi[rover.dir] + orientation["g"]) + tabDir.length) % 4 ]
-// 	updatedRover = { ... rover, dir: newDir }
-// 	return updatedRover
-// }
-
-// function turnRight(rover, planet) {
-// 	let newDir = tabDir[(ptscardi[rover.dir] + orientation["d"]) % 4 ]
-// 	updatedRover = { ... rover, dir: newDir }
-// 	return updatedRover
-// }
 
 const tabDir = ['N', 'E', 'S', 'O']
 const orientation = {d: 1, g: -1}
@@ -79,8 +57,8 @@ function turn(rover, planet, tu) {
 const mapFunctionA = {a: move, r: move, d: turn, g: turn}
 
 function execOneCmd(rover, planet, aCmd) {
+	console.log("une commande  ", aCmd)
 	return mapFunctionA[aCmd](rover, planet, aCmd)
-	// return ptrFunctCmd[command[aCmd]](rover, planet)
 }
 
 function execCmdRec(rover, planet, tabCmd) {
@@ -96,8 +74,6 @@ function execCmdReduce(rover, planet, tabCmd) {
 	tabCmd.reduce( function(accumulateur, currentVal, index, array) {
 		console.log("acc :", accumulateur, " currentval : ", currentVal, " index : ", index, " array : ", array)
 		rover = execOneCmd(rover, planet, array[index])
-
-		//res = mapFunction[current](rover, planet, current)
 	}, 0)
 	return {... rover}
 
@@ -131,3 +107,5 @@ export { createRover };
 export { move };
 export { turn };
 export { moveDix };
+export {execOneCmd};
+export {execCmdReduce};

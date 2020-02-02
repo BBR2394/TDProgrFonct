@@ -1,11 +1,16 @@
 .App {
   text-align: center;
-  background-color: #C10000; 
+
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.canvas {
+  border-style: solid !important;
+
 }
 
 @media (prefers-reduced-motion: no-preference) {
