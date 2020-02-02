@@ -113,27 +113,30 @@ const App = () => {
         setMyColor(fillWithColor(marsRover.dir))
     };
 
+      // ce sont les boutons pour tester
+        //   <button onClick={onClickExec}>
+        //       Exec
+        //   </button>
+        // <p>Mars Rover MIII Baptiste BR</p>
+        // <button onClick={onClickCustomBtn}>
+        //     Activer les lasers
+        //   </button>
+        //   <button onClick={onClickCustomBtnTurn}>
+        //     Turn Right
+        //   </button>
+        //   <button onClick={onClickCustomBtnMove}>
+        //     Move
+        //   </button>
+        //   <button onClick={onClickCustomBtnMoveDix}>
+        //     Move +10
+        //   </button>
+
     return (
       <div className="App">
         <input value={greeting} onChange={(value) => handleInputTxt(value.target.value) }/>
-          <button onClick={onClickExec}>
+        <button onClick={onClickExec}>
               Exec
           </button>
-        <p>Mars Rover MIII Baptiste BR</p>
-        <button onClick={onClickCustomBtn}>
-            Activer les lasers
-          </button>
-          <button onClick={onClickCustomBtnTurn}>
-            Turn Right
-          </button>
-          <button onClick={onClickCustomBtnMove}>
-            Move
-          </button>
-          <button onClick={onClickCustomBtnMoveDix}>
-            Move +10
-          </button>
-
-
         <Stage  className="canvas"
                 width={window.innerWidth}
                 height={window.innerHeight}>
