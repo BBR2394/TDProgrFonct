@@ -2,7 +2,7 @@
 * @Author: Baptiste
 * @Date:   2020-01-21 08:30:31
 * @Last Modified by:   Baptiste
-* @Last Modified time: 2020-01-31 18:14:05
+* @Last Modified time: 2020-02-03 15:40:25
 */
 
 
@@ -60,38 +60,38 @@ function turn(rover, planet, tu) {
 //sorte de tableau de pointeur sur fonction
 mapFunctionA = {a: move, r: move, d: turn, g: turn}
 
-function execOneCmd(rover, planet, aCmd) {
+function execOneCmd(rover, planet, aCmd, obstacles) {
+	// console.log("dans exec one cmd ", rover, planet, aCmd, obstacles)
+	// if (!checkIsCollide(rover, planet, obstacles, aCmd)) {
 	return mapFunctionA[aCmd](rover, planet, aCmd)
+	// }
+	// else {
+	// 	return rover
+	// }
 	// return ptrFunctCmd[command[aCmd]](rover, planet)
 }
 
-function execCmdRec(rover, planet, tabCmd) {
-	let cmd = tabCmd.shift()
-	//console.log(cmd)
-	execOneCmd(rover, planet, cmd)
-	execCmdRec(rover, planet, tabCmd)
-	return {... rover}
-}
+// function execCmdRec(rover, planet, tabCmd) {
+// 	let cmd = tabCmd.shift()
+// 	//console.log(cmd)
+// 	execOneCmd(rover, planet, cmd)
+// 	execCmdRec(rover, planet, tabCmd)
+// 	return {... rover}
+// }
 
 function execCmdReduce(rover, planet, tabCmd, obstacles) {
-	let ret = false
+	//let ret = false
+	//console.log("-> dans la fonction execCmdReduce")
 	// console.log("les commandes: ", tabCmd, " et les obstacels : ", obstacles)
 	tabCmd.reduce( function(accumulateur, currentVal) {
 		// console.log("accumulateur :", accumulateur, " currentval : ", currentVal)
 		// rover = execOneCmd(rover, planet, array[index])
-		try {
-			console.log("dans le try")
-			ret = getCollide(rover, planet, obstacles, currentVal)
-			console.log(ret)
+		//et = getCollide(rover, planet, obstacles, currentVal)
+		//console.log(ret)
+		if (!checkIsCollide(rover, planet, obstacles, currentVal)) {
+			rover = execOneCmd(rover, planet, currentVal, obstacles)
 		}
-		catch (e)
-		{
-		// 	// console.log("on a attrapé une exception ")
-		// 	// console.log("->", e)
-			return rover
-		}
-		rover = execOneCmd(rover, planet, currentVal)
-		return currentVal
+
 		//res = mapFunction[current](rover, planet, current)
 	}, 0)
 
@@ -111,35 +111,42 @@ function execCmd(rover, planet, tabCmd) {
 	// execOneCmd(rover, planet, oneCmd)
 }
 
-function getCollide(rov, plt, tabObstcl, cmd) {
-	const mapCollide = {
-	a: { x: { N: 0, S: 0, E: 1, O: -1}, 
-	  y: { N: -1, S: 1, E:0, O: 0}}, 
-	r:{ x: { N: 0, S: 0, E: -1, O: 1}, 
-	  y: { N: 1, S: -1, E: 0, O: 0}}, 
-	d: { x: { N: 0, S: 0, E: 0, O: 0}, 
-	  y: { N: 0, S: 0, E:0, O: 0}},
-	g: { x: { N: 0, S: 0, E: 0, O: 0}, 
-	  y: { N: 0, S: 0, E:0, O: 0}}};
-	// console.log("dans getcollide ", cmd )
-	// console.log("planet :", plt)
-	console.log("rover :", rov)
-	console.log("tab obstacle :", tabObstcl)
-	// console.log(mapCollide[cmd])
-	const newRover = changePos(rov, plt, mapCollide[cmd])
-	console.log(newRover)
-	let rtr = false
-	tabObstcl.map(function (elem){
-		console.log("dans le map")
-		console.log(elem)
-		if (elem.x == newRover.posX && elem.y == newRover.posY)
-		{
-			console.log("c'est vrai")
-			rtr =  true
-		}
-	})
-	return rtr;
+function checkIsCollide(rov, plt, tabObstcl, cmd) {
+	const newRover = execOneCmd(rov, plt, cmd);
+	return tabObstcl.some(function (elem){
+     return elem.x === newRover.posX && elem.y === newRover.posY
+	});
 }
+
+// function getCollide(rov, plt, tabObstcl, cmd) {
+// 	const mapCollide = {
+// 	a: { x: { N: 0, S: 0, E: 1, O: -1}, 
+// 	  y: { N: -1, S: 1, E:0, O: 0}}, 
+// 	r:{ x: { N: 0, S: 0, E: -1, O: 1}, 
+// 	  y: { N: 1, S: -1, E: 0, O: 0}}, 
+// 	d: { x: { N: 0, S: 0, E: 0, O: 0}, 
+// 	  y: { N: 0, S: 0, E:0, O: 0}},
+// 	g: { x: { N: 0, S: 0, E: 0, O: 0}, 
+// 	  y: { N: 0, S: 0, E:0, O: 0}}};
+// 	// console.log("dans getcollide ", cmd )
+// 	// console.log("planet :", plt)
+// 	//console.log("rover :", rov)
+// 	//console.log("tab obstacle :", tabObstcl)
+// 	// console.log(mapCollide[cmd])
+// 	const newRover = changePos(rov, plt, mapCollide[cmd])
+// 	//console.log(newRover)
+// 	let rtr = false
+// 	tabObstcl.map(function (elem){
+// 		//console.log("dans le map")
+// 		//console.log(elem)
+// 		if (elem.x == newRover.posX && elem.y == newRover.posY)
+// 		{
+// 			//console.log("c'est vrai")
+// 			rtr =  true
+// 		}
+// 	})
+// 	return rtr;
+// }
 
 
 module.exports = {
@@ -149,8 +156,7 @@ module.exports = {
     execOneCmd: execOneCmd,
     execCmd: execCmd,
     move: move,
-    // execCmdRec: execCmdRec,
     execCmdReduce: execCmdReduce,
     addObstacle: addObstacle,
-    getCollide: getCollide
+    checkIsCollide:checkIsCollide
 };
