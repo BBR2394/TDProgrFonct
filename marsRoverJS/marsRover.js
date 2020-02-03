@@ -2,7 +2,7 @@
 * @Author: Baptiste
 * @Date:   2020-01-21 08:30:31
 * @Last Modified by:   Baptiste
-* @Last Modified time: 2020-02-03 15:40:25
+* @Last Modified time: 2020-02-03 15:51:33
 */
 
 
@@ -20,7 +20,6 @@ function addObstacle(obTab, posX, posY) {
 }
 
 function changePos(rover, planet, map) {
-	// console.log("change pos  ", map)
 	newPosX = (rover.posX + map["x"][rover.dir] + planet.planetX) % planet.planetX
 	newPosY = (rover.posY + map["y"][rover.dir] + planet.planetY) % planet.planetY
 	return { ... rover, posX: newPosX, posY: newPosY}
@@ -32,7 +31,6 @@ function move(rover, planet, command) {
 			y: { N: -1, S: 1, E:0, O: 0}}, 
 		r:{ x: { N: 0, S: 0, E: -1, O: 1}, 
 			y: { N: 1, S: -1, E: 0, O: 0}}};
-	//console.log("command ", command)
 	return changePos(rover, planet, mapMove[command])
 }
 
@@ -61,38 +59,15 @@ function turn(rover, planet, tu) {
 mapFunctionA = {a: move, r: move, d: turn, g: turn}
 
 function execOneCmd(rover, planet, aCmd, obstacles) {
-	// console.log("dans exec one cmd ", rover, planet, aCmd, obstacles)
-	// if (!checkIsCollide(rover, planet, obstacles, aCmd)) {
 	return mapFunctionA[aCmd](rover, planet, aCmd)
-	// }
-	// else {
-	// 	return rover
-	// }
-	// return ptrFunctCmd[command[aCmd]](rover, planet)
 }
 
-// function execCmdRec(rover, planet, tabCmd) {
-// 	let cmd = tabCmd.shift()
-// 	//console.log(cmd)
-// 	execOneCmd(rover, planet, cmd)
-// 	execCmdRec(rover, planet, tabCmd)
-// 	return {... rover}
-// }
 
 function execCmdReduce(rover, planet, tabCmd, obstacles) {
-	//let ret = false
-	//console.log("-> dans la fonction execCmdReduce")
-	// console.log("les commandes: ", tabCmd, " et les obstacels : ", obstacles)
 	tabCmd.reduce( function(accumulateur, currentVal) {
-		// console.log("accumulateur :", accumulateur, " currentval : ", currentVal)
-		// rover = execOneCmd(rover, planet, array[index])
-		//et = getCollide(rover, planet, obstacles, currentVal)
-		//console.log(ret)
 		if (!checkIsCollide(rover, planet, obstacles, currentVal)) {
 			rover = execOneCmd(rover, planet, currentVal, obstacles)
 		}
-
-		//res = mapFunction[current](rover, planet, current)
 	}, 0)
 
 	return {... rover}
@@ -104,11 +79,7 @@ function execCmd(rover, planet, tabCmd) {
 	tabCmd.filter(function (elem) {
 		upRover = execOneCmd(upRover, planet, elem)
 	})
-
 	return upRover
-
-	// oneCmd = tabCmd.shift()
-	// execOneCmd(rover, planet, oneCmd)
 }
 
 function checkIsCollide(rov, plt, tabObstcl, cmd) {

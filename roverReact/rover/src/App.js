@@ -9,15 +9,11 @@ import  {initPlanet, createRover, addObstacle, move, turn, moveDix, execOneCmd, 
 const App = () => {
     const coefForAGoddPrint = 10
     const planet = initPlanet(500, 300)
-    const posXdeparture = 120//parseInt(Math.random() * planet.planetX);
-    const posYdeparture = 120//parseInt(Math.random() * planet.planetY);
-    // let marsRover = createRover(200, 142, 'S')
-   
+    // ici on initialise la position du rover
+    const posXdeparture = parseInt(Math.random() * planet.planetX);
+    const posYdeparture = parseInt(Math.random() * planet.planetY);
     const [marsRover, setRover] = useState(createRover(posXdeparture, posYdeparture, 'S'))
     const [greeting, setGreetings] = useState("");
-    //const [direction, setDirection] = useState('N')
-    //const state = { isDragging: false, x: 200, y: 142, dir: 'N' };
-
     const fillWithColor = (direction) => {
       const colorLinked = { N: "#34B3FF", S: "#FBD01E", E: "#3FDC3C", O: "#D70D0D"}
       return (colorLinked[direction])
@@ -54,33 +50,14 @@ const App = () => {
     const handleInputTxt = (val) => {
         console.log("le dernier char : ", val.charAt(val.length - 1))
         let cmd = val.charAt(val.length - 1)
-        //setRover(execOneCmd(marsRover, planet, cmd))
         setGreetings(val)
-        //setPosX(getPosXRover())
-        //setPosY(getPosYRover())
-        //setMyColor(fillWithColor(marsRover.dir))
     }
 
-    /*
-    const execCommands = (i, cmdtab) => {
-        if (cmdtab[i] !== undefined) {
-            setRover(execOneCmd(marsRover, planet, cmdtab[i]))
-            console.log(marsRover)
-            execCommands(i+1, cmdtab)
-        }
-        else
-            return 0
-    }*/
-
     const onClickExec = () => {
-        // let input = this.refs.cmdStr;
         console.log("commande liste : ", greeting)
         const commands = greeting.split("")
-        //execCommands(0, commands)
         setRover(execCmdReduce(marsRover, planet, commands, obstacle));
         setGreetings("")
-        //setRover(execOneCmd(marsRover, planet, commands[0]));
-
     }
 
     const onClickCustomBtn = () => {
@@ -118,12 +95,7 @@ const App = () => {
 
     const handleClickRect = () => {
         setGreetings("click rectangle");
-        //  setMyColor(Konva.Util.getRandomColor())
-        //console.log("click rect test turn ", marsRover.dir)
-        //const prevDir = marsRover.dir
         setRover(turn(marsRover, planet, 'd'))
-        //console.log("prev dir : ", prevDir, "new dir : ", marsRover.dir)
-
         setMyColor(fillWithColor(marsRover.dir))
     };
 
@@ -149,24 +121,8 @@ const App = () => {
       <div className="App">
         <input value={greeting} onChange={(value) => handleInputTxt(value.target.value) }/>
         <button onClick={onClickExec}>
-              Exec
-          </button>
-        <button onClick={onClickExec}>
                Exec
-           </button>
-         <p>Mars Rover MIII Baptiste BR</p>
-         <button onClick={onClickCustomBtn}>
-             Activer les lasers
-           </button>
-           <button onClick={onClickCustomBtnTurn}>
-             Turn Right
-           </button>
-           <button onClick={onClickCustomBtnMove}>
-             Move
-           </button>
-           <button onClick={onClickCustomBtnMoveDix}>
-             Move +10
-           </button>
+        </button>
         <Stage  className="canvas"
                 width={window.innerWidth}
                 height={window.innerHeight}>
