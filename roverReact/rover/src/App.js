@@ -60,38 +60,7 @@ const App = () => {
         setGreetings("")
     }
 
-    const onClickCustomBtn = () => {
-      let newMarsRover = move(marsRover, planet, 'a')
-      setRover(newMarsRover)     
-    }
 
-    const onClickCustomBtnTurn = () => {
-      console.log("I test turn ", marsRover.dir)
-      const prevDir = marsRover.dir
-      setRover(turn(marsRover, planet, 'd'))
-        console.log("prev dir : ", prevDir, "new dir : ", marsRover.dir)
-      setGreetings("direction : " + marsRover.dir + " prev dir : " + prevDir)
-      setMyColor(fillWithColor(marsRover.dir))
-    }
-
-    const onClickCustomBtnMove = () => {
-        console.log("J test move ", marsRover.posX, " y ", marsRover.posY)
-        setRover(move(marsRover, planet, 'a'))
-        console.log("J test move ", marsRover.posX, " y ", marsRover.posY)
-        setPosX(getPosXRover())
-        setPosY(getPosYRover())
-        console.log("position rover :", getPosXRover, getPosYRover)
-    }
-
-    // it is just because to move from 1 to 1 it is slow
-    const onClickCustomBtnMoveDix = () => {
-      console.log("I test move ", marsRover.posX, " y ", marsRover.posY)
-      setRover(moveDix(marsRover, planet, 'a'))
-      console.log("I test move ", marsRover.posX, " y ", marsRover.posY)
-      setPosX(getPosXRover())
-      setPosY(getPosYRover())
-      console.log("position rover :", getPosXRover, getPosYRover)
-    }
 
     const handleClickRect = () => {
         setGreetings("click rectangle");
