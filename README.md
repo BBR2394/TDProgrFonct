@@ -8,5 +8,5 @@ le dossier eponyme contient ce qui concerne le tp/td sur le mars rover
 enfin le dossier roverReact contient tout ce qui concerne la partie react js
 
 ### My study list
-[list of all my repo](https://github.com/BBR2394/TheGreatArchive)
-[the year of study I did that](https://github.com/BBR2394/TheGreatArchive/tree/main/5-master1)
+- [list of all my repo](https://github.com/BBR2394/TheGreatArchive)
+- [the year of study I did that](https://github.com/BBR2394/TheGreatArchive/tree/main/5-master1)
