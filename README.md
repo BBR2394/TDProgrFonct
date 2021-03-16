@@ -1,6 +1,11 @@
 # depot du cours de progr fonctionelle
 a la racine se trouve les éléments des premiere tp/td sur la todolist
 
+## Goal of this project/class
+(to do in english ...)
+## But de ce projet/de ce cours
+En fait, le but de ce projet fut de faire de la programmation fonctionnelle en javascript : donc bien sur, coder en mode paradigme fonctionelle, c'est à dire pour les non initié, que le but est de codé avec seulement des fonctions et sans variable -> tout ce qui s'apparente a des variable sont "immutable" et donc sont des valeurs. Il existe des langage conçu pour ce paradigme, et ce qui fut aussi étonnant, c'était de le faire en javascript. Et bien sur de refaire de la programmation fonctionnelle fur aussi très intéressant.
+
 # Mars rover JS
 le dossier eponyme contient ce qui concerne le tp/td sur le mars rover
 
